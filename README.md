@@ -70,6 +70,26 @@ chrome浏览器的话按F12，然后搜索「code」，你会发现有一个 「
 
 连接到你的搬瓦工服务器之后，接下来几个命令让你快速搭建一个属于自己的ss服务器：
 
+准备工作: 
+1. 先安装gcc:  yum -y install gcc gcc-c++ kernel-devel //安装gcc、c++编译器以及内核文件
+2. 再安装 libsodium 1.0.18: 
+    1). 获得文件: wget https://download.libsodium.org/libsodium/releases/libsodium-1.0.18-stable.tar.gz tar vzxf libsodium-1.0.18-stable.tar.gzcd libsodium-stable
+    2)  编译安装./configure --prefix=/usrmake && make checksudo make installsudo ldconfig
+3. 安装python: 
+如果系统存在python: 则执行 ln -s /usr/bin/python3.6 /usr/bin/python
+如果没有则yum安装: 
+    1) 更新一下yum：sudo yum -y update
+    2) 安装yum-utils 【一组扩展和补充yum的实用程序和插件】: sudo yum -y install yum-utils
+    3) 安装CentOS开发工具 【用于允许您从源代码构建和编译软件】: sudo yum -y groupinstall development
+    4) 安装EPEL： sudo yum -y install epel-release
+    5) 安装IUS软件源：sudo yum -y install https://centos7.iuscommunity.org/ius-release.rpm
+    6) 安装Python3.6：sudo yum -y install python36u
+    7) 安装pip3：sudo yum -y install python36u-pip
+    8) 检查一下安装情况，分别执行命令查看：python3.6 -V  ,  pip3.6 -V
+
+
+开始安装shadowsocks:
+
 1. 搬瓦工安装 wget
     ```
     yum install wget
@@ -82,6 +102,7 @@ wget –no-check-certificate -O shadowsocks.sh https://raw.githubusercontent.com
 ```
 chmod +x shadowsocks.sh
 ```
+
 4. 设置密码和端口号
 当你输入`./shadowsocks.sh 2>&1 | tee shadowsocks.log`后就可以设置密码和端口号了：
 
